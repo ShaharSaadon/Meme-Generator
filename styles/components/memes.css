@@ -1,0 +1,13 @@
+.memes-grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+    grid-auto-flow: dense;
+    gap: 10px;
+    padding: 60px;
+    margin: 0 auto;
+}
+
+img {
+    display: block;
+    width: 100%;
+}

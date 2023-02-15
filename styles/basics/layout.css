@@ -1,0 +1,21 @@
+.main-layout {
+  display: grid;
+  grid-template-columns:
+      minmax(20px, 1fr)
+      minmax(auto, 1080px) 
+      minmax(20px, 1fr);
+}
+
+.main-layout> *{    
+  grid-column: 2;
+}
+
+@media (max-width:800px) {
+  .main-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(20px, 1fr)
+        minmax(auto, 760px) 
+        minmax(20px, 1fr);
+  }
+}
