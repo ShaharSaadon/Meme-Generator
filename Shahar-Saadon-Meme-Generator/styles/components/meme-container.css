@@ -1,0 +1,19 @@
+.meme-container{
+display: grid;
+grid-template-columns: 50%;
+background-color: gainsboro;
+gap:10px
+}
+
+.meme-container a{
+    color:black
+}
+
+.meme-canvas{
+  width: 100%;
+  height: 100%; 
+}
+
+.meme-controll{
+    grid-column: 2;
+}
