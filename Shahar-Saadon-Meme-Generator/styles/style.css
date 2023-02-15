@@ -3,10 +3,7 @@
 @import 'setup/typography.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css';
 
-/* BASICS */
-@import 'basics/base.css';
-@import 'basics/layout.css';
-@import 'basics/helpers.css';
+
 
 /* COMPONENTS */
  @import 'components/header.css';
@@ -19,3 +16,8 @@
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';
+
+/* BASICS */
+@import 'basics/base.css';
+@import 'basics/layout.css';
+@import 'basics/helpers.css';

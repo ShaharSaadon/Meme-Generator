@@ -12,9 +12,11 @@ function renderImages() {
 
 function onImgSelect(imgId) {
     let elImageGallery = document.querySelector('.image-gallery')
-    let elMemeCanvas = document.querySelector('.meme-canvas')
+    let elMemeCanvas = document.querySelector('.meme-container')
     elImageGallery.classList.toggle('hide')
     elMemeCanvas.classList.toggle('hide')
     setImg(imgId)
     renderMeme()
+    document.querySelector('.meme-text').focus();
+
 }
