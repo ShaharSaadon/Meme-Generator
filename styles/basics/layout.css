@@ -15,7 +15,17 @@
     display: grid;
     grid-template-columns:
         minmax(20px, 1fr)
-        minmax(auto, 760px) 
+        minmax(auto, 700px) 
         minmax(20px, 1fr);
+  }
+}
+
+@media (max-width:600px) {
+  .main-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(5px, 1fr)
+        minmax(auto, 560px) 
+        minmax(5px, 1fr);
   }
 }

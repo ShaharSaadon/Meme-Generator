@@ -5,18 +5,40 @@
     border-radius: 25px;
 }
 
-.main-nav{
-    grid-column: 2;
+.logo{
+    font-size: 1.5rem;
+    padding: 0 0 0 1rem
 }
 
 .main-menu{
     display: grid;
     gap:100px;
     grid-auto-flow: column;
-    padding: 0 1rem 0 1rem;
+    flex-wrap: wrap;
+}
+
+.gallery-header span:hover{
+    cursor: pointer;
 }
 
 .main-nav .main-menu a{
     margin-inline-start: 100px;
     color:white;
+}
+
+@media (max-width:800px) {
+    .main-menu{
+     gap:40px;
+  }
+
+  .main-nav .main-menu a{
+    margin-inline-start: 60px;
+}
+}
+
+@media (max-width:600px) {
+    .main-menu{
+     gap:25px;
+
+  }
 }

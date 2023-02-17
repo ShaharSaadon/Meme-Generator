@@ -1,12 +1,11 @@
 'use strict'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
-const MEME_KEY = 'memeDB'
 
 let gElCanvas
 let gCtx
-let gIsMovable = false
-let gStartPos
+let gLastPos = { x: null, y: null }
+
 
 
 function onInit() {
@@ -15,23 +14,39 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     addListeners()
     renderMemes()
+    renderSlider()
     //reseize canvas
 }
 
 function renderMeme() {
-    var image = new Image();
-    image.src = `/images/${gMeme.selectedImgId}.jpg`;
-    gCtx.drawImage(image, 0, 0, gElCanvas.width, gElCanvas.height)
+    onDrawImage()
     onDrawText()
+}
+
+function onDrawImage() {
+    const img = new Image()
+    const meme = getMeme()
+
+    if (!meme.selectedImgId) {
+        img.src = gUserImage
+    } else {
+        const memeImg = getSelectedImg(meme.selectedImgId)
+        img.src = memeImg.url
+    }
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function onDrawText() {
     const meme = getMeme()
+
+    if (!meme.lines.length) return;
+    if (!meme.selectedImgId) return;
+
     meme.lines.forEach(line => {
         drawText(line);
     });
 
-    drawRectOnText()
+    drawRectOnText(gMeme.lines[gMeme.selectedLineIdx])
 }
 
 function onSetLineText() {
@@ -45,6 +60,11 @@ function onChangeColor(color) {
     renderMeme()
 }
 
+function onChangeStrokeColor(color) {
+    changeStrokeColor(color)
+    renderMeme()
+}
+
 function onChangeFontSize(operator) {
     changeFontSize(operator)
     renderMeme()
@@ -54,15 +74,27 @@ function onChangeAlign(direction) {
     changeAlign(direction)
 }
 
-function onChangeLines() {
+function onChangeText(txt) {
+    const currLine = getDragLine();
+    setLineText(txt);
+    renderMeme();
+    drawRectOnText(currLine);
+}
+
+function onChangeLines(isNewLine) {
     changeLines()
-    let elText = document.querySelector('.meme-text')
-    elText.value = getMeme().lines[gMeme.selectedLineIdx].txt
     document.querySelector('.meme-text').focus()
+    if (isNewLine) {
+        document.querySelector('.meme-text').value = ''
+        console.log('newline')
+    } else {
+        let elText = document.querySelector('.meme-text')
+        elText.value = getMeme().lines[gMeme.selectedLineIdx].txt
+    }
 
 }
 
-function onChangeFont(fontFamily){
+function onChangeFont(fontFamily) {
     changeFont(fontFamily)
 }
 
@@ -78,31 +110,54 @@ function addListeners() {
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mousemove', onMove)
-    // gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function onDown(ev) {
-    console.log('Down')
+    document.body.style.cursor = 'grabbing'
     const pos = getEvPos(ev)
-    checkTouchText(pos)
+    if (!isTouchLine(pos)) return
+    gLastPos = pos
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = true
 }
 
-function checkTouchText(pos) {
+function isTouchLine(pos) {
+    var isTouchLine = false
     const meme = getMeme()
-    if (pos.y > meme.lines[0].position.y && pos.y < meme.lines[0].position.y + meme.lines[0].height) {
-        console.log('yes')
-        meme.selectedLineIdx = 0
-    }
-    else if (pos.y > meme.lines[1].position.y && pos.y < meme.lines[1].position.y + meme.lines[1].height) {
-        console.log('yes')
-        meme.selectedLineIdx = 1
-    }
+    const { x, y } = pos
+    var possibleLines = meme.lines.filter(line =>
+        y > line.position.y && y < line.position.y + line.height)
 
+    possibleLines.forEach((line) => {
+        var text = line.txt
+        var textWidth = gCtx.measureText(text)
+        console.log('x', x, 'y', y)
+        if ((x > (gElCanvas.width - textWidth.width) / 2) && (x < (gElCanvas.width - textWidth.width))) {
+            var lineIdx = gMeme.lines.findIndex(line => line.txt === text)
+            console.log('yes', lineIdx)
+            gMeme.selectedLineIdx = lineIdx
+            isTouchLine = true
+        }
+    });
     renderMeme()
+    return isTouchLine
 }
 
 function onMove(ev) {
-    console.log('move ')
+    const line = getDragLine()
+    if (!line) return
+    if (!line.isDrag) return
+    const pos = getEvPos(ev)
+    const { x, y } = pos
+    moveLine(x, y);
+    gLastPos = pos
+    renderMeme()
+}
+
+function onUp() {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = false;
+    document.body.style.cursor = 'auto';
+    renderMeme()
 }
 
 function getEvPos(ev) {
@@ -126,16 +181,17 @@ function getEvPos(ev) {
     return pos
 }
 
-function onAddLine(){
-addLine()
+function onAddLine() {
+    addLine()
 }
 
-function onDeleteSelectedLine(){
+function onDeleteSelectedLine() {
     deleteSelectedLine()
 }
 
-function onSave(){
-    saveMeme(prompt('What is the name of the meme?'))
+function onSave() {
+    const userMeme = getMeme()
+    saveMeme(userMeme)
     onClearTextInput()
     resetMeme()
 }
@@ -143,56 +199,31 @@ function onSave(){
 function onClearTextInput() {
     const elMemeText = document.querySelector('.meme-text')
     elMemeText.value = ''
-  }
-  
-// function onClearCanvas(){
-//     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-// }
+}
 
-// function draw(ev) {4
-//     const { offsetX, offsetY } = ev //offset= where the user touch at the Canvas!
-//     switch (gCurrShape) {
-//         case 'triangle':
-//             drawTriangle(offsetX, offsetY)
-//             break
-//         case 'rect': drawRect(offsetX, offsetY)
-//             break
-//         case 'circle': drawCircle(offsetX, offsetY)
-//             break
-//         case 'text':
-//         const text = document.querySelector('.txt').value
-//         drawText(gMeme,offsetX, offsetY)
-//             break
-//         case 'pen': drawPoint(offsetX, offsetY)
-//             break
-//     }
-// }
+function onRandomMeme() {
+    createRandomMeme()
+}
+
+function renderSlider() {
+    const emojiRange = document.querySelector('.emoji-range');
+    const emojiContainer = document.querySelector('.moji');
+    const mojis = ['😄', '🙂', '😐', '😑', '☹️', '😩', '😠', '😡', '🤢', '😤', '💩'];
+
+    emojiRange.addEventListener('input', (e) => {
+        let rangeValue = e.target.value;
+        emojiContainer.textContent = mojis[rangeValue];
+
+    });
 
 
 
+}
 
-// function resizeCanvas() {
-//     const elContainer = document.querySelector('.meme-canvas')
-//     gElCanvas.width = elContainer.offsetWidth
-//     gElCanvas.height = elContainer.offsetHeight
-//   }
-
-
-
+function onGetEmoji() {
+    const elEmoji = document.querySelector('.moji').textContent
+    console.log(elEmoji)
+    addLine(elEmoji)
+}
 
 
-
-
-
-
-
-
-
-
-
-//Onsetlang
-// On delete meme :deleteBook(bookId)
-    // renderBooks()
-    // flashMsg('Book Deleted')
-//On addMeme
-// On UpdateMme
