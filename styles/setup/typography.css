@@ -10,18 +10,11 @@
     font-family: lato;
     src: url('fonts/lato/Lato-Regular.ttf');
 }
-
-/* Aquire */
-
-@font-face{
-    font-family: aquire;
-    src: url('/../fonts/Aquire-BW0ox.otf')
-}
  
 /* Poppins */
 
 @font-face {
     font-family: poppins;
-    /* src: url('https://fonts.cdnfonts.com/css/poppins'); */
+    src: url('fonts/Poppins-Regular.ttf');
 } 
 
