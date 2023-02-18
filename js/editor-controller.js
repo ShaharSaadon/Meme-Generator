@@ -35,8 +35,7 @@ function onDrawImage() {
     } else {
         const memeImg = getSelectedImg(meme.selectedImgId)
         img.src = memeImg.url
-        console.log(img)
-
+        console.log('img=====',img, 'img.src=',img.src)
     }
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
