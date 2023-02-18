@@ -63,6 +63,13 @@ transition: 0.4s;
 
 @media (max-width:800px) {
   
+    .gallery-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: max-content;
+    }
+    
     .meme-canvas {
       display: flex;
       justify-content: center;
@@ -75,7 +82,7 @@ transition: 0.4s;
   }
   
   
-  @media (max-width:600px) {
+  @media (max-width:650px) {
     .images-grid-container {
         grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
     }

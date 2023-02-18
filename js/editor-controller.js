@@ -102,12 +102,26 @@ function onChangeFont(fontFamily) {
 
 function addListeners() {
     addMouseListeners()
-    // addTouchListeners()
-    //Listen for resize ev
-    //   window.addEventListener('resize', () => {
-    //     onInit()
-    // })
+    addTouchListeners()
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        })
 }
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    // Note: changing the canvas dimension this way clears the canvas
+    gElCanvas.width = elContainer.offsetWidth
+    // Unless needed, better keep height fixed.
+    // gElCanvas.height = elContainer.offsetHeight
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
 
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', onDown)

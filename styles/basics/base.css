@@ -9,7 +9,8 @@
   body {
     font-size: 1rem;
     margin: 0;
-    background-image: url(../img/background.jpg.jpg);
+    background-image: url(/images/background.jpg);
+    
     background-size: cover;
   }
   img {
