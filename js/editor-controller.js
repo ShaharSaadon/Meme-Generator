@@ -35,6 +35,8 @@ function onDrawImage() {
     } else {
         const memeImg = getSelectedImg(meme.selectedImgId)
         img.src = memeImg.url
+        console.log(img)
+
     }
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
@@ -103,17 +105,7 @@ function onChangeFont(fontFamily) {
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
-    window.addEventListener('resize', () => {
-        resizeCanvas()
-        })
-}
 
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    // Note: changing the canvas dimension this way clears the canvas
-    gElCanvas.width = elContainer.offsetWidth
-    // Unless needed, better keep height fixed.
-    // gElCanvas.height = elContainer.offsetHeight
 }
 
 function addTouchListeners() {
