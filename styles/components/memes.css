@@ -11,3 +11,9 @@ img {
     display: block;
     width: 100%;
 }
+
+.memes-grid-container img:hover{
+    scale: 1.2;
+    border:2px black solid;
+    transition: 0.4s;
+    }

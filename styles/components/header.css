@@ -10,6 +10,11 @@
     padding: 0 0 0 1rem
 }
 
+.main-menu lis:hover{
+    transition: .5s;
+    }
+
+    
 .main-menu{
     display: grid;
     gap:100px;

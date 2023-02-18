@@ -16,6 +16,7 @@ function onInit() {
     renderMemes()
     renderSlider()
     //reseize canvas
+
 }
 
 function renderMeme() {
@@ -29,6 +30,8 @@ function onDrawImage() {
 
     if (!meme.selectedImgId) {
         img.src = gUserImage
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+
     } else {
         const memeImg = getSelectedImg(meme.selectedImgId)
         img.src = memeImg.url
@@ -86,7 +89,6 @@ function onChangeLines(isNewLine) {
     document.querySelector('.meme-text').focus()
     if (isNewLine) {
         document.querySelector('.meme-text').value = ''
-        console.log('newline')
     } else {
         let elText = document.querySelector('.meme-text')
         elText.value = getMeme().lines[gMeme.selectedLineIdx].txt
@@ -121,26 +123,63 @@ function onDown(ev) {
     gMeme.lines[gMeme.selectedLineIdx].isDrag = true
 }
 
-function isTouchLine(pos) {
-    var isTouchLine = false
-    const meme = getMeme()
-    const { x, y } = pos
-    var possibleLines = meme.lines.filter(line =>
-        y > line.position.y && y < line.position.y + line.height)
+// function isTouchLine(pos) {
+//     var isTouchLine = false
+//     const meme = getMeme()
+//     const { x, y } = pos
+//     var possibleLines = meme.lines.filter(line =>
+//         y > line.position.y && y < line.position.y + line.height)
 
-    possibleLines.forEach((line) => {
-        var text = line.txt
-        var textWidth = gCtx.measureText(text)
-        console.log('x', x, 'y', y)
-        if ((x > (gElCanvas.width - textWidth.width) / 2) && (x < (gElCanvas.width - textWidth.width))) {
-            var lineIdx = gMeme.lines.findIndex(line => line.txt === text)
-            console.log('yes', lineIdx)
-            gMeme.selectedLineIdx = lineIdx
-            isTouchLine = true
+//     possibleLines.forEach((line) => {
+//         var text = line.txt
+//         var textWidth = gCtx.measureText(text)
+//         console.log('x', x, 'y', y)
+//         if ((x > (gElCanvas.width - textWidth.width) / 2) && (x < (gElCanvas.width - textWidth.width))) {
+//             var lineIdx = gMeme.lines.findIndex(line => line.txt === text)
+//             console.log('yes', lineIdx)
+//             gMeme.selectedLineIdx = lineIdx
+//             isTouchLine = true
+//         }
+//     });
+//     renderMeme()
+//     return isTouchLine
+// }
+
+function isTouchLine(clickedPos) {
+    const lineIdx = gMeme.lines.findIndex(function (line) {
+        if (line.align === 'left') {
+            return (
+                clickedPos.x > line.position.x &&
+                clickedPos.x < line.position.x + (line.size / 2) * line.txt.length &&
+                clickedPos.y < line.position.y &&
+                clickedPos.y > line.position.y - line.size
+            );
+        } else if (line.align === 'center') {
+            const halfWordPx = ((line.size / 2) * line.txt.length) / 2;
+            return (
+                clickedPos.x > line.position.x - halfWordPx &&
+                clickedPos.x < line.position.x + halfWordPx &&
+                clickedPos.y < line.position.y &&
+                clickedPos.y > line.position.y - line.size
+            );
+        } else {
+            return (
+                (clickedPos.x > line.position.x - (line.size / 2) * line.txt.length) &
+                (clickedPos.x < line.position.x) &&
+                clickedPos.y < line.position.y &&
+                clickedPos.y > line.position.y - line.fontSize
+            );
         }
     });
-    renderMeme()
-    return isTouchLine
+
+    if (lineIdx === -1) return false;
+    gMeme.selectedLineIdx = lineIdx;
+    gMeme.lines[lineIdx].isDrag = true;
+    gMeme.isDrag = true;
+    let elText = document.querySelector('.meme-text')
+    elText.value = getMeme().lines[gMeme.selectedLineIdx].txt
+    document.querySelector('.meme-text').focus()
+    return true;
 }
 
 function onMove(ev) {

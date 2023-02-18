@@ -21,58 +21,73 @@ var gTrans = {
         en: 'Book Shop',
         he: 'חנות ספרים'
     },
-    'filter-search':{
-        en: 'Search Book:',
-        he: 'חפש ספר'
+    'gallery':{
+        en: 'Gallery',
+        he: 'גלריה'
     },
-    'filter-max-price':{
-        en: 'Max Price:',
-        he: 'מחיר מקסימלי'
+    'memes':{
+        en:'MEMES',
+        he:'מימים',
     },
-    'filter-min-rate':{
-        en: 'Min Rate:',
-        he: 'דירוג מינימלי'
+    'contact':{
+        en:'Contact',
+        he:'צור קשר'
     },
-    'table-title':{
-        en: 'TITLE',
-        he: 'כותרת'
+    'flexible':{
+        en:'i\'m Flexible',
+        he:'הגרל מימ',
     },
-    'table-price':{
-        en: 'PRICE',
-        he: 'מחיר'
+    'home':{
+        en:'Home',
+        he:'דף בית',
     },
-    'table-rate':{
-        en: 'RATE',
-        he: 'דירוג'
+    'quick-links':{
+        en:'Quick Links',
+        he:'קישורים מהירים',
     },
-    'table-actions':{
-        en: 'ACTIONS',
-        he: 'פעולות'
+    'extra-links':{
+        en:'Extra Links',
+        he:'קישורים נוספים',
     },
-    'btn-read':{
-        en: 'Read',
-        he: 'עיין'
+    'questions':{
+        en:'ASK QUESTION',
+        he:'תשאל אותנו שאלה',
     },
-    'btn-update':{
-        en: 'Update',
-        he: 'עדכן'
+    'about':{
+        en:'ABOUT US',
+        he:'עלינו'
     },
-    'btn-remove':{
-        en: 'Remove',
-        he: 'הסר'
+    'privacy':{
+        en:'PRIVACY POLICY',
+        he:'תנאי פרטיות',
     },
-    'btn-next':{
-        en: 'Next Page',
-        he: 'עמוד הבא'
+    'terms':{
+        en:'TERMS OF USE',
+        he:'תנאי השימוש',
     },
-    'btn-create':{
-        en: 'Create New Book',
-        he: 'הוסף ספר'
+    'petach-tikva':{
+        en:'Petah Tikva, Israel - 4965217',
+        he: 'פתח תקווה - ישראל, 496527',
     },
-    'btn-prev':{
-        en: 'Prev Page',
-        he: 'עמוד קודם'
+    'follow-us':{
+        en:'Follow Us',
+        he: 'תעקבו אחרינו',
     },
+    'contact-info':{
+        en:'contat info',
+        he: 'דברו איתנו!',
+    },
+    'meme-generator':{
+        en:'MEME-GENERATOR.',
+        he: 'מגריל הממים',
+    },
+    'created':{
+        en:'created with ❤ by shahar saadon',
+        he: 'נוצר ב♥ על ידי שחר סעדון',
+    },
+    
+
+
 }
 
 

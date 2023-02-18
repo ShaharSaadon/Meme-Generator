@@ -48,7 +48,6 @@ function drawText(line) {
 // line.height = textHeight
 // let textHeight = gCtx.measureText(txt).fontBoundingBoxAscent + gCtx.measureText(txt).fontBoundingBoxDescent
 
-
 function drawRectOnText(line) {
 
     if (line.align === 'left') {

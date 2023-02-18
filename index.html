@@ -14,14 +14,14 @@
 
     <!-- HEADER STARTS -->
     <header class="main-header flex align-center space-between">
-        <div class="logo">MEME-GENERATOR.</div>
+        <div class="logo" data-trans="meme-generator">MEME-GENERATOR.</div>
         <nav class="main-nav">
             <ul class="main-menu clean-list">
-                <li><a href="" onclick="onGallery(event)">Gallery</a></li>
-                <li><a href="" onclick="onMemes(event)">Memes</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="" onclick="onGallery(event)" data-trans="gallery">Gallery</a></li>
+                <li><a href="" onclick="onMemes(event)" data-trans="memes">Memes</a></li>
+                <li><a href="" data-trans="contact">Contact</a></li>
             </ul>
-        </nav>
+        </nav>  
     </header>
     <!-- HEADER ENDS -->
 
@@ -39,7 +39,7 @@
 
                 </div>
                 <input type="file" class="file-input-btn" name="image" onchange="onImgInput(event)" />
-                <button onclick="onRandomMeme()">Im Flexible</button>
+                <button onclick="onRandomMeme()" data-trans="flexible">Im Flexible</button>
                 <input list="browsers" name="browser" id="browser" oninput="onFilterImages(this.value)"
                     placeholder="filter by" class="filter-by">
                 <datalist id="browsers">
@@ -105,8 +105,17 @@
                             <option value="eurofurence">eurofurence</option>
                             <option value="lato">Lato</option>
                         </select>
-                        <input type="color" onchange="onChangeColor(this.value)" />
-                        <input type="color" onchange="onChangeStrokeColor(this.value)" />
+
+                    </div>
+                    <div class="colors">
+                        <div class="fill-color">
+                            iNLINE
+                            <input type="color" onchange="onChangeColor(this.value)" />
+                        </div>
+                        <div class="stroke-color">
+                            OUTLINE
+                            <input type="color" onchange="onChangeStrokeColor(this.value)" />
+                        </div>
                     </div>
                 </div>
                 </a>
@@ -145,39 +154,45 @@
     <footer>
         <div class="footer-container">
             <div class="box">
-                <h3>quick links</h3>
-                <a href="index.html"> <i class="fas fa-angle-right"></i> Home</a>
-                <a href="about.html"> <i class="fas fa-angle-right"></i> Gallery</a>
-                <a href="#package.html"> <i class="fas fa-angle-right"></i> Memes</a>
-                <a href="contact.html"> <i class="fas fa-angle-right"></i> contact us</a>
+                <h3 data-trans="quick-links">quick links</h3>
+                <a href="#" onclick="onGallery(event)" data-trans="home"> <i class="fas fa-angle-right"></i> Home</a>
+                <a href="#" onclick="onGallery(event)" data-trans="gallery"> <i class="fas fa-angle-right"></i> Gallery</a>
+                <a href="#" onclick="onMemes(event)" data-trans="memes"> <i class="fas fa-angle-right"></i> Memes</a>
+                <a href="#" data-trans="contact"> <i class="fas fa-angle-right"></i> contact us</a>
+            </div>
+
+
+            <div class="box">
+                <h3 data-trans="extra-links">extra links</h3>
+                <a href="#" data-trans="questions"> <i class="fas fa-angle-right" ></i> ask questions</a>
+                <a href="#" data-trans="about"> <i class="fas fa-angle-right" ></i> About us</a>
+                <a href="#" data-trans="privacy"> <i class="fas fa-angle-right" ></i> privacy policy</a>
+                <a href="#" data-trans="terms"> <i class="fas fa-angle-right" ></i> terms of use</a>
             </div>
 
             <div class="box">
-                <h3>extra links</h3>
-                <a href="index.html"> <i class="fas fa-angle-right"></i> ask questions</a>
-                <a href="about.html"> <i class="fas fa-angle-right"></i> About us</a>
-                <a href="#package.html"> <i class="fas fa-angle-right"></i> privacy policy</a>
-                <a href="contact.html"> <i class="fas fa-angle-right"></i> terms of use</a>
-            </div>
-
-            <div class="box">
-                <h3>contact info</h3>
+                <h3 data-trans="contact-info">contact info</h3>
                 <a href="#"> <i class="fas fa-phone"></i> +972-53-3944574</a>
-                <a href="#"> <i class="fas fa-phone"></i>Otro Numero</a>
-                <a href="#"> <i class="fas fa-envelope"></i> shaharsaadon1@gmail.com</a>
-                <a href="#"> <i class="fas fa-map"></i> Petah Tikva, Israel - 4965217</a>
+                <a href="#"> <i class="fas fa-phone"></i> +972-3-924-9292</a>
+                <a href="mailto:shaharsaadon1@gmail.com"> <i class="fas fa-envelope"></i> shaharsaadon1@gmail.com</a>
+                <a href="#" data-trans="petach-tikva"> <i class="fas fa-map"></i> Petah Tikva, Israel - 4965217</a>
             </div>
 
             <div class="box">
-                <h3>follow us</h3>
-                <a href="https://www.facebook.com/shaharpipo">facebook</a>
-                <a href="https://twitter.com/"><i class="fab fa-twitter"></i>twitter</a>
-                <a href="https://www.instagram.com/shahar_saadon/"><i class="fab fa-instagram"></i>instagram</a>
-                <a href="https://www.linkedin.com/in/shahar-saadon-8699a4237/"><i
+                <h3 data-trans="follow-us">follow us</h3>
+                <a href="https://www.facebook.com/shaharpipo" target="_blank"><i class="fab fa-facebook"></i>facebook</a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i>twitter</a>
+                <a href="https://www.instagram.com/shahar_saadon/" target="_blank"><i class="fab fa-instagram"></i>instagram</a>
+                <a href="https://www.linkedin.com/in/shahar-saadon-8699a4237/" target="_blank"><i
                         class="fab fa-linkedin"></i>LinkedIn</a>
             </div>
 
-            <div class="credit"> created by shahar saadon</div>
+            <div class="credit"> <span data-trans="created">created with ❤ by shahar saadon</span> <br>
+                <select name="lang" id="lang" onchange="onSetLang(this.value)">
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                </select>
+            </div>
 
 
         </div>

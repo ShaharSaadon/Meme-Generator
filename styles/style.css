@@ -6,9 +6,9 @@
 
 
 /* COMPONENTS */
+@import 'components/meme-container.css';
 @import 'components/header.css';
 @import 'components/gallery.css';
-@import 'components/meme-container.css';
 @import 'components/memes.css';
 @import 'components/footer.css';
 
