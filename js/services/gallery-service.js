@@ -8,12 +8,12 @@ let gUserMemes = loadMemes()
 let gImgs = [
     {
         id: 1,
-        url: './images/1.jpg',
+        url: 'images/1.jpg',
         keywords: ['trump', 'america']
     },
     {
         id: 2,
-        url: './images/2.jpg',
+        url: 'images/2.jpg',
         keywords: ['dog', 'cute']
     },
     {
@@ -23,12 +23,12 @@ let gImgs = [
     },
     {
         id: 4,
-        url: './images/4.jpg',
+        url: 'images/4.jpg',
         keywords: ['cute', 'cat']
     },
     {
         id: 5,
-        url: './images/5.jpg',
+        url: 'images/5.jpg',
         keywords: ['kid', 'funny']
     },
     {
@@ -38,62 +38,62 @@ let gImgs = [
     },
     {
         id: 7,
-        url: './images/7.jpg',
+        url: 'images/7.jpg',
         keywords: ['kid', 'baby', 'funny']
     },
     {
         id: 8,
-        url: './images/8.jpg',
+        url: 'images/8.jpg',
         keywords: ['wired', 'clown']
     },
     {
         id: 9,
-        url: './images/9.jpg',
+        url: 'images/9.jpg',
         keywords: ['baby', 'funny']
     },
     {
         id: 10,
-        url: './images/10.jpg',
+        url: 'images/10.jpg',
         keywords: ['obamba', 'america', 'government']
     },
     {
         id: 11,
-        url: './images/11.jpg',
+        url: 'images/11.jpg',
         keywords: ['funny', 'sport', 'kiss']
     },
     {
         id: 12,
-        url: './images/12.jpg',
+        url: 'images/12.jpg',
         keywords: ['haim', 'what', 'glasses']
     },
     {
         id: 13,
-        url: './images/13.jpg',
+        url: 'images/13.jpg',
         keywords: ['beautiful', 'leonardo',]
     },
     {
         id: 14,
-        url: './images/14.jpg',
+        url: 'images/14.jpg',
         keywords: ['glasses', 'matrix',]
     },
     {
         id: 15,
-        url: './images/15.jpg',
+        url: 'images/15.jpg',
         keywords: ['regular']
     },
     {
         id: 16,
-        url: './images/16.jpg',
+        url: 'images/16.jpg',
         keywords: ['haim']
     },
     {
         id: 17,
-        url: './images/17.jpg',
+        url: 'images/17.jpg',
         keywords: ['government']
     },
     {
         id: 18,
-        url: './images/18.jpg',
+        url: 'images/18.jpg',
         keywords: ['toy']
     },
 
@@ -103,6 +103,7 @@ let gImgs = [
 function getSelectedImg(id) {
     const img = gImgs.find(img => id === img.id)
     return img
+    
 }
 
 function filterImages(filterBy) {
