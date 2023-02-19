@@ -21,8 +21,9 @@
  
 /* Poppins */
 
-/* @font-face {
+
+@font-face {
     font-family:poppins;
-    src: url('./../fonts/Poppins/Poppins-Regular.ttf')
-}  */
+    src: url('fonts/Poppins/Poppins-Regular.ttf')
+}  
 
