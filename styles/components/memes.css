@@ -14,6 +14,6 @@ img {
 
 .memes-grid-container img:hover{
     scale: 1.2;
-    border:2px black solid;
+    border:2px var(black) solid;
     transition: 0.4s;
     }
