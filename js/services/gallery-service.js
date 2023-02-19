@@ -18,7 +18,7 @@ let gImgs = [
     },
     {
         id: 3,
-        url: '/images/3.jpg',
+        url: 'images/3.jpg',
         keywords: ['dog', 'baby']
     },
     {
@@ -33,7 +33,7 @@ let gImgs = [
     },
     {
         id: 6,
-        url: '/images/6.jpg',
+        url: 'images/6.jpg',
         keywords: ['funny', 'awsome']
     },
     {
