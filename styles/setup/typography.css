@@ -1,8 +1,8 @@
 /* Eurofurence */
 
 @font-face {
-    font-family:eurofurence;
-    src: url('fonts/eurofurence/eurof55.ttf');
+    font-family: eurofurence;
+    src: url('/.fonts/eurofurence/eurof55.ttf');
 }
 
 /* Lato */
@@ -10,11 +10,19 @@
     font-family:lato;
     src: url('fonts/lato/Lato-Regular.ttf');
 }
+
+
+/* Aquire */
+
+@font-face{
+    font-family:aquire;
+    src: url('/../fonts/Aquire-BW0ox.otf')
+}
  
 /* Poppins */
 
-@font-face {
+/* @font-face {
     font-family:poppins;
-    src: url('fonts/Poppins-Regular.ttf');
-} 
+    src: url('./../fonts/Poppins/Poppins-Regular.ttf')
+}  */
 
