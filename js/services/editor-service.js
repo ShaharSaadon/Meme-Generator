@@ -52,7 +52,8 @@ function drawRectOnText(line) {
 
     if (line.align === 'left') {
         drawRec(
-          line.position.x - 10,
+        
+        //   line.position.x - 10,
           line.position.y - line.size,
           line.txt.length * (0.5 * line.size),
           1.2 * line.size

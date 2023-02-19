@@ -1,8 +1,9 @@
 .main-header{
-    margin-block-end: 20px;
+    margin-block-end: 2em;
     background-color: black;
     height: 60PX;
     border-radius: 25px;
+
 }
 
 .logo{
@@ -17,7 +18,7 @@
     
 .main-menu{
     display: grid;
-    gap:100px;
+    gap:1em;
     grid-auto-flow: column;
     flex-wrap: wrap;
 }
@@ -27,23 +28,6 @@
 }
 
 .main-nav .main-menu a{
-    margin-inline-start: 100px;
+    margin-inline-start: 6.25em;
     color:white;
-}
-
-@media (max-width:800px) {
-    .main-menu{
-     gap:40px;
-  }
-
-  .main-nav .main-menu a{
-    margin-inline-start: 60px;
-}
-}
-
-@media (max-width:600px) {
-    .main-menu{
-     gap:25px;
-
-  }
 }

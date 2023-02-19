@@ -1,2 +1,28 @@
 /* MOBILE 600 */
 
+
+
+ @media (max-width: 600px) {
+    .main-layout {
+      width: 34%;
+    }
+  
+    .main-nav .main-menu a{
+      font-size: 70%;
+  
+  }
+
+.main-nav .main-menu a{
+    margin-inline-start: 4.25em;
+
+}
+
+  }
+
+
+@media (max-width: 500) {
+  .main-nav .main-menu a{
+    font-size: 50%;
+
+}
+  }

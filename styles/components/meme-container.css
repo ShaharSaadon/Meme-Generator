@@ -248,7 +248,7 @@
 
   .meme-controll {
     grid-template-rows: 7.5rem 5rem 1fr 1fr 1fr;
-    grid-template-columns: 45vw 45vw;
+    grid-template-columns: 55% 45%;
     grid-area: controll;
     border: 1px solid black;
     margin-inline-end: 2rem;
